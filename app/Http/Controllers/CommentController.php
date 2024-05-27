@@ -14,6 +14,7 @@ class CommentController extends Controller
             'content' => 'required|min:1'
         ]);
 
+        $validate['user_id'] = auth()->id();
         $validate['idea_id'] = $idea->id;
 
         Comment::create($validate);
