@@ -9,10 +9,12 @@ class Idea extends Model
 {
     use HasFactory;
 
+    // user, comments NAME select from function "hasMany" or "belongsTo"
+    protected $with = ['user:id,name,image' , 'comments.user:id,name,image'];
+
     protected $fillable = [
         'user_id',
         'content',
-        'likes',
     ];
 
     public function comments(){
@@ -21,5 +23,9 @@ class Idea extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function likes(){
+        return $this->belongsToMany(User::class, 'idea_like')->withTimestamps();
     }
 }

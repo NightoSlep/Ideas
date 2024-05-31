@@ -9,11 +9,11 @@
             <div class="col-6">
                 @include('shared.success-message')
                 <div class="mt-3">
-                    @include('shared.user-card')
+                    @include('user.shared.user-card')
                 </div>
                 <hr>
                 @forelse ($user->ideas as $idea)
-                    @include('shared.idea-card')
+                    @include('ideas.shared.idea-card')
                 @empty
                     <p class="text-center my-3">No Results Found</p>
                 @endforelse

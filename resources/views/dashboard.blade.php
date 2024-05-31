@@ -8,12 +8,12 @@
             </div>
             <div class="col-6">
                 @include('shared.success-message')
-                @include('shared.submit-idea')
+                @include('ideas.shared.submit-idea')
                 <hr>
                 @forelse ($ideas as $idea)
-                    @include('shared.idea-card')
+                    @include('ideas.shared.idea-card')
                 @empty
-                    <p class="text-center my-3">No Results Found</p>
+                    <p class="text-center my-3">No Ideas Found</p>
                 @endforelse
                 <div class="mt-3">
                     {{ $ideas->withQueryString()->links() }}
