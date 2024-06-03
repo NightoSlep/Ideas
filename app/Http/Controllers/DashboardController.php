@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
-    public function index() {
-
+    public function index()
+    {
         $ideas = Idea::orderBy('created_at', 'DESC');
 
-        if(request()->has('search')){
+        if (request()->has('search')) {
             $ideas = $ideas->where('content', 'like', '%' . request()->get('search', '') . '%');
         }
 
-        return view('dashboard',[
-            'ideas' => $ideas ->paginate(5)
+        $topUsers = User::withCount('ideas')->orderBy('ideas_count', 'DESC')->limit(5)->get();
+
+        return view('dashboard', [
+            'ideas' => $ideas->paginate(5),
+            'topUsers' => $topUsers,
         ]);
     }
 }

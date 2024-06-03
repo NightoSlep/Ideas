@@ -17,5 +17,6 @@
 @endauth
 
 @guest
-    <h4>{{ __('ideas.login_to_share')}}</h4>
+    {{-- <h4>{{ __('ideas.login_to_share')}}</h4> this was use to translate--}}
+    <h4>Login to share your ideas</h4>
 @endguest
