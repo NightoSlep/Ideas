@@ -11,6 +11,7 @@ class Idea extends Model
 
     // user, comments NAME select from function "hasMany" or "belongsTo"
     protected $with = ['user:id,name,image' , 'comments.user:id,name,image'];
+    protected $withCount = ['likes'];
 
     protected $fillable = [
         'user_id',

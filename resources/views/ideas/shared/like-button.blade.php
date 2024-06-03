@@ -17,10 +17,10 @@
     @guest
         @if ($idea->likes()->count() > 0)
             <a href="{{ route('login') }}" type="submit" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                </span> {{ $idea->likes()->count() }} </a>
+                </span> {{ $idea->likes_count }} </a>
         @else
             <a href="{{ route('login') }}" type="submit" class="fw-light nav-link fs-6"> <span class="far fa-heart me-1">
-                </span> {{ $idea->likes()->count() }} </a>
+                </span> {{ $idea->likes_count }} </a>
         @endif
     @endguest
 </div>
