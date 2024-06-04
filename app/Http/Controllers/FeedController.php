@@ -18,6 +18,10 @@ class FeedController extends Controller
 
         $ideas = Idea::whereIn('user_id', $followingIDs)->latest();
 
+        if (request()->has('search')) {
+            $ideas = $ideas->search($request->input('search', ''));
+        }
+
         return view('dashboard', [
             'ideas' => $ideas->paginate(5)
         ]);

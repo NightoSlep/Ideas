@@ -31,7 +31,7 @@ Route::post('users/{user}/unfollow', [FollowerController::class, 'unfollow'])->m
 Route::post('ideas/{idea}/like', [IdeaLikeController::class, 'like'])->middleware('auth')->name('ideas.like');
 Route::post('ideas/{idea}/unlike', [IdeaLikeController::class, 'unlike'])->middleware('auth')->name('ideas.unlike');
 
-Route::get('/feeds', FeedController::class)->middleware('auth')->name('feeds');
+Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
 
 Route::get('/terms', function(){
     return view('terms');

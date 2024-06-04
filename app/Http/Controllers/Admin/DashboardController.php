@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
-    public function index(User $user){
-        Gate::authorize('view', $user);
+    public function index(){
+        $user = auth()->user();
+
+        // Gate::authorize('viewAdminDashboard', $user);
+        if (Gate::allows('viewAdminDashboard', $user)) {
+            return view('admin.dashboard');
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
         
-        return view('admin.dashboard');
+
     }
 }
