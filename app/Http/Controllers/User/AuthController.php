@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Mail\WelcomeEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,16 +16,14 @@ class AuthController extends Controller
     }
 
     public function store(){
-        $validate = request()->validate(
-            [
+        $validate = request()->validate([
             'name' => 'required|min:3|max:40',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
             ]
         );
 
-        $user = User::create(
-            [
+        $user = User::create([
                 'name' => $validate['name'],
                 'email' => $validate['email'],
                 'password' => Hash::make($validate['password']),

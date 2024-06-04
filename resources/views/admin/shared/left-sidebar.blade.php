@@ -2,7 +2,8 @@
     <div class="card-body pt-3">
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
             <li class="nav-item">
-                <a class="{{ (Route::is('terms')) ? 'text-white bg-primary rounded' : ''}} nav-link" href="{{ route('terms') }}">
+                <a class="{{ Route::is('admin.dashboard') ? 'text-white bg-primary rounded' : '' }} nav-link"
+                    href="{{ route('admin.dashboard') }}">
                     <span>Admin</span></a>
             </li>
         </ul>

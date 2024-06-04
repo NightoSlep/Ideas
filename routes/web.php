@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FeedController;
-use App\Http\Controllers\FollowerController;
-use App\Http\Controllers\IdeaController;
-use App\Http\Controllers\IdeaLikeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\CommentController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\FeedController;
+use App\Http\Controllers\User\FollowerController;
+use App\Http\Controllers\User\IdeaController;
+use App\Http\Controllers\User\IdeaLikeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class , 'index'])->name('dashboard');
@@ -37,4 +36,6 @@ Route::get('/terms', function(){
     return view('terms');
 })->name('terms');
 
-Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware(['auth', 'can:admin'])->name('admin.dashboard');
+Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(function() {
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
