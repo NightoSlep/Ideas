@@ -15,11 +15,4 @@ class UserPolicy
     {
         return $user->is($model);
     }
-    
-    public function viewAdminDashboard(User $user): bool
-    {
-        Log::info('Checking viewAdminDashboard policy for user: ' . $user->id);
-        Log::info('User is_admin: ' . $user->is_admin);
-        return $user->is_admin===true;
-    }
 }

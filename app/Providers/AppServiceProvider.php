@@ -28,7 +28,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        Cache::forget('topUsers');
+        //Role
+        Gate::define('admin', function (User $user): bool {
+            return (bool) $user->is_admin;
+        });
+
+        // Cache::forget('topUsers');
 
         $topUsers = Cache::remember('topUser', now()->addMinutes(5), function () {
             return User::withCount('ideas')
