@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\IdeaController as AdminIdeaController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\FeedController;
@@ -38,4 +40,7 @@ Route::get('/terms', function(){
 
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(function() {
     Route::get('/admin', [AdminDashboardController::class, 'index'])->name('dashboard');
+    
+    Route::resource('/users', AdminUserController::class)->only('index');
+    Route::resource('/ideas', AdminIdeaController::class)->only('index');
 });
